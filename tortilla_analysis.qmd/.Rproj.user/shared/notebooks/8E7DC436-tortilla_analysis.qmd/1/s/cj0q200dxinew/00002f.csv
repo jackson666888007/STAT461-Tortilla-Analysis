@@ -1,0 +1,5 @@
+"0",""
+"0","ggplot(data, aes(x = storeType, y = price)) +"
+"0","  geom_boxplot(fill = ""orange"") +"
+"0","  theme_minimal() +"
+"0","  labs(title = ""Price by Store Type"", x = ""Store Type"", y = ""Price"")"

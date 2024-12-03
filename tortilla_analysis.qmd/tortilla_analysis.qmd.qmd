@@ -1,0 +1,44 @@
+---
+title: "Tortilla Price Analysis"
+author: "Beiwei Niu"
+date: "2024-12-02"
+output: html
+---
+
+```{r}
+library(tidyverse)
+data <- read.csv("C:/Users/19098/Desktop/tortilla_data.csv")
+head(data)
+str(data)
+missing_values <- colSums(is.na(data))
+missing_values
+data <- na.omit(data)
+str(data)
+summary(data)
+grouped_summary <- data %>%
+  group_by(storeType) %>%
+  summarise(
+    Average_Price = mean(price, na.rm = TRUE),
+    Price_SD = sd(price, na.rm = TRUE),
+    Count = n()
+  )
+grouped_summary
+
+
+ggplot(data, aes(x = price)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
+  theme_minimal() +
+  labs(title = "Price Distribution", x = "Price", y = "Frequency")
+
+ggplot(data, aes(x = storeType, y = price)) +
+  geom_boxplot(fill = "orange") +
+  theme_minimal() +
+  labs(title = "Price by Store Type", x = "Store Type", y = "Price")
+
+ggplot(data, aes(x = year, y = price)) +
+  geom_point(color = "red") +
+  theme_minimal() +
+  labs(title = "Year vs Price", x = "Year", y = "Price")
+
+
+```
